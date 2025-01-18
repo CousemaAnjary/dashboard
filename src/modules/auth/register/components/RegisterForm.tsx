@@ -2,9 +2,11 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
+import { FaGithub } from "react-icons/fa"
+import { FcGoogle } from "react-icons/fc"
 import { useForm } from "react-hook-form"
-import { Eye, EyeOff, Loader } from "lucide-react"
 import { Input } from "@/src/components/ui/input"
+import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
@@ -30,7 +32,7 @@ const formSchema = z.object({
         // .refine((file) => file?.size < 5 * 1024 * 1024, {
         //     message: "Le fichier doit être inférieur à 5 Mo.",
         // }),
-        
+
         .optional()
 })
 
@@ -56,6 +58,10 @@ export default function RegisterForm() {
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
     const handleRegister = (data: z.infer<typeof formSchema>) => {
+
+        // Affichage du loader pendant le chargement
+        setLoading(true)
+
         console.log("Formulaire soumis :", data);
     }
 
@@ -178,9 +184,26 @@ export default function RegisterForm() {
                                     ) : (
                                         "Créer un compte"
                                     )}
-
                                 </Button>
+                            </div>
 
+                            <div className="relative">
+                                <div className="relative flex justify-center text-xs uppercase">
+                                    <span className="bg-background px-2 font-inter text-muted-foreground">Ou continuer avec</span>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-2">
+                                <div className="grid gap-2">
+                                    <Button type="button" variant="outline" className="w-full font-inter">
+                                        <FcGoogle size={18} /> Google
+                                    </Button>
+                                </div>
+                                <div className="grid gap-2">
+                                    <Button type="button" variant="outline" className="w-full font-inter">
+                                        <FaGithub size={18} /> Github
+                                    </Button>
+                                </div>
                             </div>
 
                         </div>
