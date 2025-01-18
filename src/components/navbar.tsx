@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Button } from './ui/button'
-import {Select,  SelectContent, SelectGroup,SelectItem, SelectTrigger,SelectValue,} from "./ui/select"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, } from "./ui/select"
 import { Contact, House, Info, LayoutTemplate, LogIn, Monitor, MoonStar, Sun, User } from 'lucide-react'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "./ui/dropdown-menu"
 
 
 export default function Navbar() {
@@ -63,7 +63,7 @@ export default function Navbar() {
                         </Button>
                     </DropdownMenuTrigger>
 
-                    <DropdownMenuContent className="w-72">
+                    <DropdownMenuContent className="w-72 mt-2">
                         <DropdownMenuGroup className='space-y-3 p-2'>
                             {/* Theme Section */}
                             <div className="flex justify-between items-center">
@@ -96,12 +96,15 @@ export default function Navbar() {
                         <DropdownMenuSeparator />
 
                         {/* Login Section */}
-                        <DropdownMenuItem className="font-spaceGrotesk font-medium">
-                            <div className="flex items-center space-x-2">
-                                <LogIn className="w-4 h-4" />
-                                <span>Se connecter</span>
-                            </div>
-                        </DropdownMenuItem>
+                        <Link href="/auth/login">
+                            <DropdownMenuItem className="font-spaceGrotesk font-medium">
+                                <div className="flex items-center space-x-2">
+                                    <LogIn className="w-4 h-4" />
+                                    <span>Se connecter</span>
+                                </div>
+                                <DropdownMenuShortcut>⌘L</DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                        </Link>
                     </DropdownMenuContent>
                 </DropdownMenu>
 

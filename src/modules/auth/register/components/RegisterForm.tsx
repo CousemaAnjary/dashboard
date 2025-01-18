@@ -45,7 +45,7 @@ export default function RegisterForm() {
                 body: JSON.stringify(data),
             })
 
-           if (response.ok) {
+            if (response.ok) {
                 // Rediriger l'utilisateur vers la page de connexion
                 router.push("/auth/login")
             }
