@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt"
+import { resolve } from "path"
+import { writeFile } from "fs/promises"
 import { prisma } from "@/src/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 import { registerSchema } from "@/src/lib/validations/auth"
-import { writeFile } from "fs/promises";
-import { resolve } from "path";
 
 
 export async function POST(request: NextRequest) {
@@ -26,25 +26,25 @@ export async function POST(request: NextRequest) {
         // Hachage du mot de passe
         const hashedPassword = await bcrypt.hash(validated.password, 10)
 
-        let imageUrl = null;
+        let imageUrl = null
 
         // Upload de l'image (si elle existe)
         const imageFile = body.get("image") as File | null
 
         if (imageFile) {
-            const imageBuffer = Buffer.from(await imageFile.arrayBuffer());
+            const imageBuffer = Buffer.from(await imageFile.arrayBuffer())
 
             // Générer un nom de fichier unique
-            const fileName = `${Date.now()}-${imageFile.name}`;
+            const fileName = `${Date.now()}-${imageFile.name}`
 
             // Définir le chemin complet pour enregistrer l'image
-            const filePath = resolve(`./public/uploads/${fileName}`);
+            const filePath = resolve(`./public/uploads/${fileName}`)
 
             // Enregistrer l'image localement
-            await writeFile(filePath, imageBuffer);
+            await writeFile(filePath, imageBuffer)
 
             // Définir l'URL publique
-            imageUrl = `/uploads/${fileName}`;
+            imageUrl = `/uploads/${fileName}`
         }
 
         // Création de l'utilisateur

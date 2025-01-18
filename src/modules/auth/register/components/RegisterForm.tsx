@@ -2,6 +2,7 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
+import { useRouter } from "next/router"
 import { FaGithub } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc"
 import { useForm } from "react-hook-form"
@@ -13,10 +14,12 @@ import { registerSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 
 
+
 export default function RegisterForm() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -33,14 +36,26 @@ export default function RegisterForm() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    const handleRegister = (data: z.infer<typeof registerSchema>) => {
-
+    const handleRegister = async (data: z.infer<typeof registerSchema>) => {
         // Affichage du loader pendant le chargement
         setLoading(true)
 
-        console.log("Formulaire soumis :", data);
-    }
+        try {
+            //Envoi des données du formulaire à l'API
+            const response = await fetch("/api/auth/register", { method: "POST", body: JSON.stringify(data) })
 
+            if (response) {
+                router.push("/auth/login")
+            }
+
+        } catch (error) {
+            console.error(error)
+
+        } finally {
+            // Désactivation du loader après le chargement
+            setLoading(false)
+        }
+    }
 
     /**
      * ! AFFICHAGE (render) de l'application
