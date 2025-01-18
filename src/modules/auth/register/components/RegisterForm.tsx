@@ -9,32 +9,8 @@ import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { registerSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-
-// Définir le schéma de validation avec Zod
-const formSchema = z.object({
-    lastname: z.string().nonempty("Le nom est obligatoire"),
-    firstname: z.string().nonempty("Le prénom est obligatoire"),
-    email: z.string().email("L'adresse email est invalide"),
-    password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères"),
-    image: z
-        // Vérifie que l’entrée est bien un fichier (File).
-        .custom<File>((value) => value instanceof File, {
-            message: "Le fichier doit être un fichier valide.",
-        })
-
-        //Vérifie que le fichier est une image (par exemple, image/png, image/jpeg)
-        .refine((file) => file?.type.startsWith("image/"), {
-            message: "Le fichier doit être une image.",
-        })
-
-        //Vérifie que la taille du fichier est inférieure à 5 Mo
-        // .refine((file) => file?.size < 5 * 1024 * 1024, {
-        //     message: "Le fichier doit être inférieur à 5 Mo.",
-        // }),
-
-        .optional()
-})
 
 
 export default function RegisterForm() {
@@ -44,8 +20,8 @@ export default function RegisterForm() {
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof registerSchema>>({
+        resolver: zodResolver(registerSchema),
         defaultValues: {
             lastname: "",
             firstname: "",
@@ -57,7 +33,7 @@ export default function RegisterForm() {
     /**
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
-    const handleRegister = (data: z.infer<typeof formSchema>) => {
+    const handleRegister = (data: z.infer<typeof registerSchema>) => {
 
         // Affichage du loader pendant le chargement
         setLoading(true)

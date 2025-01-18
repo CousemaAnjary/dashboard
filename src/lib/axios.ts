@@ -1,1 +1,0 @@
-// lib : Bibliothèques et configurations globales
