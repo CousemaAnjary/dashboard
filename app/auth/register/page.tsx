@@ -1,7 +1,7 @@
 import { cn } from "@/src/lib/utils"
 import Navbar from "@/src/components/navbar"
 import GridPattern from "@/src/components/ui/grid-pattern"
-
+import RegisterForm from "@/src/modules/auth/register/components/RegisterForm"
 
 
 export default function Register() {
@@ -31,7 +31,7 @@ export default function Register() {
                 {/* Section 1 */}
                 <section className="flex justify-center items-center min-h-[84vh]">
                     {/*  container du formulaire d'inscription */}
-             
+                    <RegisterForm />
                 </section>
             </main>
 
