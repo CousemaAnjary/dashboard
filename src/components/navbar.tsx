@@ -1,15 +1,9 @@
 import Link from 'next/link'
 import { Button } from './ui/button'
+import {Select,  SelectContent, SelectGroup,SelectItem, SelectTrigger,SelectValue,} from "./ui/select"
 import { Contact, House, Info, LayoutTemplate, LogIn, Monitor, MoonStar, Sun, User } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "./ui/select"
+
 
 export default function Navbar() {
     /**
