@@ -14,8 +14,6 @@ import { registerSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 
 
-
-
 export default function RegisterForm() {
     /**
      * ! STATE (état, données) de l'application
@@ -42,10 +40,13 @@ export default function RegisterForm() {
         setLoading(true)
 
         try {
-            //Envoi des données du formulaire à l'API
-            const response = await fetch("/api/auth/register", { method: "POST", body: JSON.stringify(data) })
+            const response = await fetch("/api/auth/register", {
+                method: "POST",
+                body: JSON.stringify(data),
+            })
 
-            if (response) {
+           if (response.ok) {
+                // Rediriger l'utilisateur vers la page de connexion
                 router.push("/auth/login")
             }
 
@@ -145,7 +146,7 @@ export default function RegisterForm() {
                                 </div>
                             </div>
 
-                            <div className="grid gap-2">
+                            {/* <div className="grid gap-2">
                                 <FormField
                                     control={form.control}
                                     name="image"
@@ -164,7 +165,7 @@ export default function RegisterForm() {
                                         </FormItem>
                                     )}
                                 />
-                            </div>
+                            </div> */}
 
                             <div className="grid">
                                 <Button type="submit" className="w-full font-inter" disabled={loading}>

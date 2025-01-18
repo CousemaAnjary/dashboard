@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
-import { resolve } from "path"
-import { writeFile } from "fs/promises"
+// import { resolve } from "path"
+// import { writeFile } from "fs/promises"
 import { prisma } from "@/src/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 import { registerSchema } from "@/src/lib/validations/auth"
@@ -9,7 +9,7 @@ import { registerSchema } from "@/src/lib/validations/auth"
 export async function POST(request: NextRequest) {
     try {
         // Récupérer les données et valider les données envoyées
-        const body = await request.formData()
+        const body = await request.json()
         const validated = registerSchema.parse(body)
 
         // Vérifier si l'email existe déjà
@@ -26,26 +26,26 @@ export async function POST(request: NextRequest) {
         // Hachage du mot de passe
         const hashedPassword = await bcrypt.hash(validated.password, 10)
 
-        let imageUrl = null
+        // let imageUrl = null
 
-        // Upload de l'image (si elle existe)
-        const imageFile = body.get("image") as File | null
+        // // Upload de l'image (si elle existe)
+        // const imageFile = body.get("image") as File | null
 
-        if (imageFile) {
-            const imageBuffer = Buffer.from(await imageFile.arrayBuffer())
+        // if (imageFile) {
+        //     const imageBuffer = Buffer.from(await imageFile.arrayBuffer())
 
-            // Générer un nom de fichier unique
-            const fileName = `${Date.now()}-${imageFile.name}`
+        //     // Générer un nom de fichier unique
+        //     const fileName = `${Date.now()}-${imageFile.name}`
 
-            // Définir le chemin complet pour enregistrer l'image
-            const filePath = resolve(`./public/uploads/${fileName}`)
+        //     // Définir le chemin complet pour enregistrer l'image
+        //     const filePath = resolve(`./public/uploads/${fileName}`)
 
-            // Enregistrer l'image localement
-            await writeFile(filePath, imageBuffer)
+        //     // Enregistrer l'image localement
+        //     await writeFile(filePath, imageBuffer)
 
-            // Définir l'URL publique
-            imageUrl = `/uploads/${fileName}`
-        }
+        //     // Définir l'URL publique
+        //     imageUrl = `/uploads/${fileName}`
+        // }
 
         // Création de l'utilisateur
         const newUser = await prisma.user.create({
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
                 firstname: validated.firstname,
                 email: validated.email,
                 password: hashedPassword,
-                image: imageUrl,
+                // image: imageUrl,
             }
         })
 
