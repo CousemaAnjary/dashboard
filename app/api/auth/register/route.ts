@@ -16,10 +16,12 @@ export async function POST(request: NextRequest) {
         if (existingUser) {
 
             // Retourner une erreur si l'utilisateur existe déjà
-            return NextResponse.json(
-                { succes: false, message: "Un utilisateur avec cet email existe déjà." },
-                { status: 400 }
-            )
+            return NextResponse.json({
+                success: false,
+                message: "Cet email est déjà utilisé."
+            }, { status: 400 })
+
+
         }
 
         // Hachage du mot de passe
@@ -37,6 +39,7 @@ export async function POST(request: NextRequest) {
 
         // Retourner la réponse
         return NextResponse.json({
+            success: true,
             user: newUser,
             message: "Utilisateur créé avec succès."
         }, { status: 201 })
