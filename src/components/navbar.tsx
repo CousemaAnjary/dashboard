@@ -24,11 +24,11 @@ export default function Navbar() {
             {/* Logo et Menu */}
             <div className="flex items-center ms-5">
                 <LayoutTemplate />
-                <ul className='flex space-x-1 ms-6'>
+                <ul className='flex space-x-1 ms-2'>
                     <li>
                         <Link href="/">
-                            <Button variant={'ghost'} className='flex items-center font-inter'>
-                                <House className="w-3 h-3" />
+                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
+                                <House  className="w-3 h-3" />
                                 <span>Accueil</span>
                             </Button>
 
@@ -36,7 +36,7 @@ export default function Navbar() {
                     </li>
                     <li>
                         <Link href="#">
-                            <Button variant={'ghost'} className='flex items-center font-inter font-medium'>
+                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
                                 <Info className="w-3 h-3" />
                                 <span>A propos de moi</span>
                             </Button>
@@ -45,7 +45,7 @@ export default function Navbar() {
                     </li>
                     <li>
                         <Link href="#">
-                            <Button variant={'ghost'} className='flex items-center font-inter'>
+                            <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
                                 <Contact className="w-3 h-3" />
                                 <span>Contact</span>
                             </Button>
