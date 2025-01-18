@@ -11,7 +11,8 @@ export default {
   theme: {
   	extend: {
 		fontFamily: {
-			inter : ['Inter']
+			inter : ['Inter'],
+			spaceGrotesk: ['Space Grotesk']
 		},
   		colors: {
   			background: 'hsl(var(--background))',
