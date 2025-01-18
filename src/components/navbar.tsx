@@ -1,8 +1,15 @@
 import Link from 'next/link'
 import { Button } from './ui/button'
-import { Contact, House, Info, LayoutTemplate, LogIn, User } from 'lucide-react'
+import { Contact, House, Info, LayoutTemplate, LogIn, Monitor, MoonStar, Sun, User } from 'lucide-react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu"
-
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "./ui/select"
 
 export default function Navbar() {
     /**
@@ -28,7 +35,7 @@ export default function Navbar() {
                     <li>
                         <Link href="/">
                             <Button variant={'ghost'} className='flex items-center font-spaceGrotesk'>
-                                <House  className="w-3 h-3" />
+                                <House className="w-3 h-3" />
                                 <span>Accueil</span>
                             </Button>
 
@@ -62,18 +69,40 @@ export default function Navbar() {
                         </Button>
                     </DropdownMenuTrigger>
 
-                    <DropdownMenuContent className="w-64">
-                        <DropdownMenuGroup>
-                            {/* <DropdownMenuItem className='font-inter'>
-                                Thème
-                            </DropdownMenuItem> */}
-                            <DropdownMenuItem className='font-inter'>
-                                Langue
-                            </DropdownMenuItem>
+                    <DropdownMenuContent className="w-72">
+                        <DropdownMenuGroup className='space-y-3 p-2'>
+                            {/* Theme Section */}
+                            <div className="flex justify-between items-center">
+                                <span className='font-spaceGrotesk text-sm'>Thème</span>
+                                <div className="flex items-center border p-1 rounded-full space-x-2">
+                                    <Sun className=" cursor-pointer p-1 border rounded-full" />
+                                    <Monitor className="w-4 h-4 cursor-pointer" />
+                                    <MoonStar className="w-4 h-4 cursor-pointer" />
+                                </div>
+                            </div>
+
+                            {/* Language Section */}
+                            <div className="flex justify-between items-center">
+                                <span className='font-spaceGrotesk text-sm'>Langue</span>
+                                <Select defaultValue="fr">
+                                    <SelectTrigger className="w-[130px] h-7 font-spaceGrotesk">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup className='font-spaceGrotesk'>
+                                            <SelectItem value="fr">🇫🇷 Français</SelectItem>
+                                            <SelectItem value="en">🇬🇧 English</SelectItem>
+                                            <SelectItem value="es">🇲🇬 Malagasy</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
                         </DropdownMenuGroup>
 
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className='font-inter'>
+
+                        {/* Login Section */}
+                        <DropdownMenuItem className="font-spaceGrotesk font-medium">
                             <div className="flex items-center space-x-2">
                                 <LogIn className="w-4 h-4" />
                                 <span>Se connecter</span>

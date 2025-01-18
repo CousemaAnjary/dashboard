@@ -65,8 +65,8 @@ export default function RegisterForm() {
     return (
         <>
             <div className="relative p-8 w-full max-w-md">
-                <h1 className="mb-2 text-2xl font-medium font-spaceGrotesk text-black">Inscription</h1>
-                <p className="mb-4 text-sm font-spaceGrotesk text-muted-foreground">
+                <h1 className="mb-2 text-2xl font-medium font-spaceGrotesk  text-black">Inscription</h1>
+                <p className="mb-4 text-sm font-spaceGrotesk font-medium text-muted-foreground">
                     Vous avez déjà un compte ? Accédez-y en cliquant <Link href="/auth/login" className="underline text-cyan-700">ici</Link>
                 </p>
 
@@ -168,7 +168,7 @@ export default function RegisterForm() {
                             </div> */}
 
                             <div className="grid">
-                                <Button type="submit" className="w-full font-inter" disabled={loading}>
+                                <Button type="submit" className="w-full font-spaceGrotesk font-medium" disabled={loading}>
                                     {loading ? (
                                         <>
                                             <Loader className="mr-2 h-4 w-4 animate-spin" />
