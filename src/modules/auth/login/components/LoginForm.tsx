@@ -2,7 +2,7 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
-import { signIn } from "next-auth/react"
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
@@ -39,7 +39,7 @@ export default function LoginForm() {
     }
 
     const handleGithubLogin = async () => {
-        await signIn();
+        await signIn("github");
     }
 
     /**
