@@ -2,8 +2,8 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
-import { FaGithub } from "react-icons/fa"
-import { FcGoogle } from "react-icons/fc"
+// import { FaGithub } from "react-icons/fa"
+// import { FcGoogle } from "react-icons/fc"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 import { Input } from "@/src/components/ui/input"
@@ -184,7 +184,7 @@ export default function RegisterForm() {
                                 </Button>
                             </div>
 
-                            <div className="relative">
+                            {/* <div className="relative">
                                 <div className="relative flex justify-center text-xs uppercase">
                                     <span className="bg-background px-2 font-inter text-muted-foreground">Ou continuer avec</span>
                                 </div>
@@ -201,8 +201,7 @@ export default function RegisterForm() {
                                         <FaGithub size={18} /> Github
                                     </Button>
                                 </div>
-                            </div>
-
+                            </div> */}
                         </div>
                     </form>
 
