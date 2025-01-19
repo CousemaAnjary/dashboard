@@ -5,7 +5,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
-// import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
@@ -19,7 +19,7 @@ export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
-    // const router = useRouter()
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -41,7 +41,12 @@ export default function LoginForm() {
 
     const handleGithubLogin = async () => {
         // Connexion avec Github
-        await signIn()
+        const response = await signIn()
+
+        if (response) {
+            //Redirection vers la page d'accueil
+            router.push("/")
+        }
     }
 
     /**
