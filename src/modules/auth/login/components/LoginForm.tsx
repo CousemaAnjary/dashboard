@@ -2,15 +2,17 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
+import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
+import { FcGoogle } from "react-icons/fc"
+import { FaGithub } from "react-icons/fa"
 import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-import { FcGoogle } from "react-icons/fc"
-import { FaGithub } from "react-icons/fa"
+
 
 
 export default function LoginForm() {
@@ -34,6 +36,10 @@ export default function LoginForm() {
         // Affichage du loader pendant le chargement
         setLoading(true)
         console.log(data)
+    }
+
+    const handleGithubLogin = async () => {
+        await signIn();
     }
 
     /**
@@ -118,7 +124,7 @@ export default function LoginForm() {
                                     </Button>
                                 </div>
                                 <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full font-inter">
+                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={handleGithubLogin}>
                                         <FaGithub size={18} /> Github
                                     </Button>
                                 </div>
