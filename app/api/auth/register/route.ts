@@ -1,3 +1,5 @@
+"use server"
+
 import bcrypt from "bcrypt"
 // import { resolve } from "path"
 // import { writeFile } from "fs/promises"
