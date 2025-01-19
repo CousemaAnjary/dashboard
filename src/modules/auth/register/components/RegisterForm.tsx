@@ -46,6 +46,10 @@ export default function RegisterForm() {
             })
 
             if (response.ok) {
+                //Enregistrement du message de succès dans le localStorage
+                const result = await response.json();
+                localStorage.setItem("success", result.message)
+
                 // Rediriger l'utilisateur vers la page de connexion
                 router.push("/auth/login")
             }
