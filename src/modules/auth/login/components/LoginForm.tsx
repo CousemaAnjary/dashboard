@@ -12,7 +12,7 @@ import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-import { signIn } from "@/src/lib/auth"
+import { signIn } from "next-auth/react";
 
 
 export default function LoginForm() {
@@ -40,8 +40,8 @@ export default function LoginForm() {
     }
 
     const handleGithubLogin = async () => {
-            // Connexion avec Github
-            await signIn("github")
+        // Connexion avec Github
+        await signIn()
     }
 
     /**
