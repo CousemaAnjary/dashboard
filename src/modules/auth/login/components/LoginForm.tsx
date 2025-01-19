@@ -40,10 +40,17 @@ export default function LoginForm() {
     }
 
     const handleGithubLogin = async () => {
-        await signIn("github")
+        try {
+            // Connexion avec Github
+            const response = await signIn("github")
 
-        // Redirection vers la page d'accueil
-        router.push("/")
+            if (response?.ok) {
+                router.push("/")
+            }
+
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     /**
