@@ -2,10 +2,11 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
-import { signIn } from "next-auth/react";
+import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
+import { useRouter } from "next/navigation"
 import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
@@ -14,11 +15,11 @@ import { loginSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 
 
-
 export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -39,7 +40,10 @@ export default function LoginForm() {
     }
 
     const handleGithubLogin = async () => {
-        await signIn("github");
+        await signIn("github")
+
+        // Redirection vers la page d'accueil
+        router.push("/")
     }
 
     /**
