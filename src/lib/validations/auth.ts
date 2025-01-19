@@ -24,3 +24,9 @@ export const registerSchema = z.object({
 
     //     .optional()
 })
+
+
+export const loginSchema = z.object({
+    email: z.string().email("L'adresse email est invalide"),
+    password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères"),
+})
