@@ -1,5 +1,4 @@
 "use server"
-
 import bcrypt from "bcrypt"
 // import { resolve } from "path"
 // import { writeFile } from "fs/promises"
@@ -12,6 +11,7 @@ export async function POST(request: NextRequest) {
     try {
         // Récupérer les données et valider les données envoyées
         const body = await request.json()
+        console.log(body)
         const validated = registerSchema.parse(body)
 
         // Vérifier si l'email existe déjà
