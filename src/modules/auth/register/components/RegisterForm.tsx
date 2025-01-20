@@ -39,15 +39,12 @@ export default function RegisterForm() {
         // Affichage du loader pendant le chargement
         setLoading(true)
 
-        console.log("Données envoyées au serveur :", data);
-
         try {
             const response = await fetch("/api/auth/register", {
                 method: "POST",
                 body: JSON.stringify(data),
             })
-            console.log("Réponse brute du serveur :", response);
-            
+
             if (response.ok) {
                 //Enregistrement du message de succès dans le localStorage
                 const result = await response.json();
