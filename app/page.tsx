@@ -29,6 +29,8 @@ export default async function Page() {
       {/* Contenu principal */}
       <main className="flex-grow">
         <pre>{JSON.stringify(session, null, 2)}</pre>
+
+        {session?.user?.name}
       </main>
 
       {/* Pied de page */}
