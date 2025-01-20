@@ -49,11 +49,13 @@ export async function POST(request: NextRequest) {
         //     imageUrl = `/uploads/${fileName}`
         // }
 
+        // Concatenation des champs firstname et lastname pour le champ name
+        const fullName = `${validated.firstname} ${validated.lastname}`;
+
         // Création de l'utilisateur
         const newUser = await prisma.user.create({
             data: {
-                lastname: validated.lastname,
-                firstname: validated.firstname,
+                name: fullName,
                 email: validated.email,
                 password: hashedPassword,
                 // image: imageUrl,
