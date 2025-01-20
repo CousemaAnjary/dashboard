@@ -5,7 +5,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
@@ -19,7 +19,7 @@ export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
-    const router = useRouter()
+    // const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -39,15 +39,11 @@ export default function LoginForm() {
         console.log(data)
     }
 
-    const handleGithubLogin = async () => {
-        // Connexion avec Github
-        const response = await signIn()
-
-        if (response) {
-            //Redirection vers la page d'accueil
-            router.push("/")
-        }
-    }
+    const handleProviderLogin = async (provider: string) => {
+        setLoading(true);
+        await signIn(provider);
+        setLoading(false);
+    };
 
     /**
      * ! AFFICHAGE (render) de l'application
@@ -126,12 +122,12 @@ export default function LoginForm() {
 
                             <div className="grid grid-cols-2 gap-2">
                                 <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full font-inter">
+                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={() => handleProviderLogin("google")}>
                                         <FcGoogle size={18} /> Google
                                     </Button>
                                 </div>
                                 <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={handleGithubLogin}>
+                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={() => handleProviderLogin("github")}>
                                         <FaGithub size={18} /> Github
                                     </Button>
                                 </div>
