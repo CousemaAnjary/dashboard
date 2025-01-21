@@ -1,6 +1,5 @@
 import { z } from "zod"
 
-
 export const registerSchema = z.object({
     lastname: z.string().nonempty("Le nom est obligatoire"),
     firstname: z.string().nonempty("Le prénom est obligatoire"),
@@ -30,3 +29,11 @@ export const loginSchema = z.object({
     email: z.string().email("L'adresse email est invalide"),
     password: z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères"),
 })
+
+
+// export const sessionPayload = z.object({
+//     id: z.string(),
+//     name :z.string(), // Identifiant de l'utilisateur
+//     email: z.string(), // Email de l'utilisateur
+//     // image: z.string().optional(), // Image de profil (optionnelle)
+// });
