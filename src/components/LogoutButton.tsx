@@ -2,6 +2,9 @@
 
 import { signOut } from "next-auth/react";
 import { Button } from "./ui/button"
+import { deleteSession } from "../lib/sessions";
+
+
 
 export default function LogoutButton() {
     /**
@@ -13,6 +16,7 @@ export default function LogoutButton() {
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
     const handleGithubLogout = async () => {
+        deleteSession()
         await signOut();
     };
 

@@ -1,4 +1,4 @@
-import 'server-only'
+"use server";
 import { prisma } from './prisma'
 import { cookies } from 'next/headers'
 import { SignJWT, jwtVerify } from 'jose'
@@ -55,8 +55,17 @@ export async function createSession(userId: string) {
 }
 
 // Suppression de la session
-
 export async function deleteSession() {
     const cookieStore = await cookies()
-    cookieStore.delete('session')
+    const sessionToken = cookieStore.get("session")?.value;
+
+    if (sessionToken) {
+        // Supprimer la session de la base de données
+        await prisma.session.deleteMany({
+            where: { sessionToken },
+        });
+
+        // Supprimer le cookie
+        cookieStore.delete("session");
+    }
 }
