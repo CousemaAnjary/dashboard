@@ -1,4 +1,3 @@
-"use server"
 import { z } from "zod"
 import { registerSchema } from "@/src/lib/validations/auth"
 
@@ -21,6 +20,6 @@ export async function register(data: z.infer<typeof registerSchema>): Promise<{ 
 
     } catch (error) {
         console.error(error)
-        throw new Error("Une erreur s'est produite lors de l'inscription.")
+        throw new Error("Une erreur inattendue s'est produite.")
     }
 }

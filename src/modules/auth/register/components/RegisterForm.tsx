@@ -2,6 +2,7 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
+import { register } from "../services"
 // import { FaGithub } from "react-icons/fa"
 // import { FcGoogle } from "react-icons/fc"
 import { useForm } from "react-hook-form"
@@ -12,6 +13,7 @@ import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
+
 
 
 export default function RegisterForm() {
@@ -36,31 +38,20 @@ export default function RegisterForm() {
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
     const handleRegister = async (data: z.infer<typeof registerSchema>) => {
+
         // Affichage du loader pendant le chargement
         setLoading(true)
 
-        try {
-            const response = await fetch("/api/auth/register", {
-                method: "POST",
-                body: JSON.stringify(data),
-            })
+        // Envoi des données au service d'inscription
+        const response = await register(data)
 
-            if (response.ok) {
-                //Enregistrement du message de succès dans le localStorage
-                const result = await response.json();
-                localStorage.setItem("success", result.message)
-
-                // Rediriger l'utilisateur vers la page de connexion
-                router.push("/auth/login")
-            }
-
-        } catch (error) {
-            console.error(error)
-
-        } finally {
-            // Désactivation du loader après le chargement
-            setLoading(false)
+        if (response.success) {
+            // Redirection vers la page de connexion
+            router.push("/auth/login")
         }
+
+        // Désactivation du loader après le chargement
+        setLoading(false)
     }
 
     /**
