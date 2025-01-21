@@ -4,9 +4,7 @@ import Navbar from "@/src/components/navbar"
 import GridPattern from "@/src/components/ui/grid-pattern"
 // import { getServerSession } from "next-auth"
 // import { authOptions } from "@/src/lib/auth"
-import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar"
-import LogoutButton from "@/src/components/LogoutButton"
-import { useSession } from "next-auth/react"
+
 
 
 export default function Page() {
@@ -15,7 +13,7 @@ export default function Page() {
    */
   // 
 
-  const { data: session } = useSession()
+  
   
 
   /**
@@ -38,16 +36,7 @@ export default function Page() {
       {/* Contenu principal */}
       <main className="flex-grow">
 
-        <div>
-          <p> {session?.user?.name}</p>
-          <p>Id : {session?.user?.id}</p>
-          <Avatar>
-            <AvatarImage src={session?.user?.image ?? ""} />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-
-          <LogoutButton />
-        </div>
+        
 
       </main>
 
