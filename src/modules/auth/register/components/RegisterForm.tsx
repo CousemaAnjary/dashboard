@@ -46,7 +46,8 @@ export default function RegisterForm() {
         const response = await register(data)
 
         if (response.success) {
-            // Redirection vers la page de connexion
+            //  Enregistrement du message dans le stockage local
+            localStorage.setItem("message", response.message)
             router.push("/auth/login")
         }
 
