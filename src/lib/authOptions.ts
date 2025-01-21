@@ -3,7 +3,6 @@ import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 
 export const authOptions: NextAuthOptions = {
-    // Configure one or more authentication providers
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID as string,
@@ -14,5 +13,11 @@ export const authOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
     ],
+    // callbacks: {
+    //     async session({ session, user }) {
+    //         session.user.id = user.id
+    //         return session
+    //     },
+    // },
 }
 
