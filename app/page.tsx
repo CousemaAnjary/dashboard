@@ -2,9 +2,6 @@
 import { cn } from "@/src/lib/utils"
 import Navbar from "@/src/components/navbar"
 import GridPattern from "@/src/components/ui/grid-pattern"
-// import { getServerSession } from "next-auth"
-// import { authOptions } from "@/src/lib/auth"
-
 
 
 export default function Page() {

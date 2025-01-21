@@ -28,4 +28,5 @@ export async function middleware(request: NextRequest) {
 // Appliquer le middleware sur les routes protégées
 export const config = {
     matcher: '/dashboard',
+    runtime: "nodejs"
 }
