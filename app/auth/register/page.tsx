@@ -1,8 +1,9 @@
+import { Toaster } from "sonner"
 import { cn } from "@/src/lib/utils"
 import Navbar from "@/src/components/navbar"
 import GridPattern from "@/src/components/ui/grid-pattern"
 import RegisterForm from "@/src/modules/auth/register/components/RegisterForm"
-import { Toaster } from "sonner"
+
 
 
 export default function Register() {
