@@ -1,8 +1,7 @@
 import 'server-only'
+import { prisma } from './prisma'
 import { cookies } from 'next/headers'
 import { SignJWT, jwtVerify } from 'jose'
-import { prisma } from './prisma'
-
 
 const secretKey = process.env.SESSION_SECRET
 const encodedKey = new TextEncoder().encode(secretKey)
@@ -30,6 +29,7 @@ export async function decrypt(session: string) {
     return payload
 }
 
+// Création de la session
 export async function createSession(userId: string) {
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
     const sessionToken = await encrypt({ userId, expiresAt })
@@ -54,3 +54,9 @@ export async function createSession(userId: string) {
     })
 }
 
+// Suppression de la session
+
+export async function deleteSession() {
+    const cookieStore = await cookies()
+    cookieStore.delete('session')
+}
