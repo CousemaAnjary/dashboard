@@ -39,12 +39,7 @@ export default function LoginForm() {
         console.log(data)
     }
 
-    // const handleProviderLogin = async (provider: string) => {
-    //     setLoading(true);
-    //     await signIn(provider);
-    //     setLoading(false);
-    // };
-
+    
     /**
      * ! AFFICHAGE (render) de l'application
      */
