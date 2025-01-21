@@ -50,6 +50,17 @@ export async function POST(request: NextRequest) {
             },
         })
 
+        // Retourner la réponse avec un cookie contenant le token de session
+        const response = NextResponse.json({ success: true, message: "Connexion réussie." })
+
+        response.cookies.set("sessionToken", sessionToken, {
+            httpOnly: true,
+            expires,
+        })
+
+        return response
+
+
     } catch (error) {
         console.error(error)
     }
