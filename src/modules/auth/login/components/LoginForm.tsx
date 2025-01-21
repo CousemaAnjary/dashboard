@@ -39,11 +39,11 @@ export default function LoginForm() {
         console.log(data)
     }
 
-    const handleProviderLogin = async (provider: string) => {
-        setLoading(true);
-        await signIn(provider);
-        setLoading(false);
-    };
+    // const handleProviderLogin = async (provider: string) => {
+    //     setLoading(true);
+    //     await signIn(provider);
+    //     setLoading(false);
+    // };
 
     /**
      * ! AFFICHAGE (render) de l'application
@@ -122,12 +122,12 @@ export default function LoginForm() {
 
                             <div className="grid grid-cols-2 gap-2">
                                 <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={() => handleProviderLogin("google")}>
+                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={() => signIn("google")}>
                                         <FcGoogle size={18} /> Google
                                     </Button>
                                 </div>
                                 <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={() => handleProviderLogin("github")}>
+                                    <Button type="button" variant="outline" className="w-full font-inter" onClick={() => signIn("github")}>
                                         <FaGithub size={18} /> Github
                                     </Button>
                                 </div>
