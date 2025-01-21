@@ -1,7 +1,6 @@
 import { prisma } from './src/lib/prisma'
 import { NextResponse, NextRequest } from 'next/server'
 
-export const runtime = "nodejs"; // Force l'utilisation de Node.js Runtime
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -27,5 +26,8 @@ export async function middleware(request: NextRequest) {
 
 // Appliquer le middleware sur les routes protégées
 export const config = {
-    matcher: '/dashboard',
+    matcher: [
+        "/dashboard",
+        "/about/:path*",
+    ]
 }
