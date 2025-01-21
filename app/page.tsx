@@ -16,6 +16,7 @@ export default function Page() {
   // 
 
   const { data: session } = useSession()
+  
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
