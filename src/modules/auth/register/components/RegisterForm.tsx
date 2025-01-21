@@ -3,8 +3,6 @@ import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
 import { register } from "../services"
-// import { FaGithub } from "react-icons/fa"
-// import { FcGoogle } from "react-icons/fc"
 import { useForm } from "react-hook-form"
 import { useRouter } from "next/navigation"
 import { Input } from "@/src/components/ui/input"
@@ -13,7 +11,6 @@ import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-
 
 
 export default function RegisterForm() {
@@ -175,25 +172,6 @@ export default function RegisterForm() {
                                     )}
                                 </Button>
                             </div>
-
-                            {/* <div className="relative">
-                                <div className="relative flex justify-center text-xs uppercase">
-                                    <span className="bg-background px-2 font-inter text-muted-foreground">Ou continuer avec</span>
-                                </div>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-2">
-                                <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full font-inter">
-                                        <FcGoogle size={18} /> Google
-                                    </Button>
-                                </div>
-                                <div className="grid gap-2">
-                                    <Button type="button" variant="outline" className="w-full font-inter">
-                                        <FaGithub size={18} /> Github
-                                    </Button>
-                                </div>
-                            </div> */}
                         </div>
                     </form>
 

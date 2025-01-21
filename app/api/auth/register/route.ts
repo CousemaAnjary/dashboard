@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
     try {
         // Récupérer les données et valider les données envoyées
         const body = await request.json()
-        console.log(body)
         const validated = registerSchema.parse(body)
 
         // Vérifier si l'email existe déjà
@@ -19,6 +18,7 @@ export async function POST(request: NextRequest) {
 
         // Retourner une erreur si l'utilisateur existe déjà
         if (existingUser) {
+
             return NextResponse.json({
                 success: false,
                 message: "Cet email est déjà utilisé."
