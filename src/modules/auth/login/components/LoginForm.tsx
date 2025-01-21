@@ -2,24 +2,26 @@
 import { z } from "zod"
 import Link from "next/link"
 import { useState } from "react"
+import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
-// import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
+import { login } from "../../register/services"
 import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { loginSchema } from "@/src/lib/validations/auth"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-import { signIn } from "next-auth/react";
+
 
 
 export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
-    // const router = useRouter()
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -36,10 +38,18 @@ export default function LoginForm() {
     const handleLogin = async (data: z.infer<typeof loginSchema>) => {
         // Affichage du loader pendant le chargement
         setLoading(true)
-        console.log(data)
+
+        // Envoi des données au service de connexion
+        const response = await login(data)
+
+        // Si la connexion est réussie
+        if (response.success) {
+            // Redirection vers la page d'accueil
+            router.push("/dashboard")
+        }
     }
 
-    
+
     /**
      * ! AFFICHAGE (render) de l'application
      */
