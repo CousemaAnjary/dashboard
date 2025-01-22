@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
 import { useRouter } from "next/navigation"
-import { login } from "../../register/services"
+// import { login } from "../../register/services"
 import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
@@ -39,15 +39,31 @@ export default function LoginForm() {
         // Affichage du loader pendant le chargement
         setLoading(true)
 
-        // Envoi des données au service de connexion
-        const response = await login(data)
+        try {
+            // Connexion avec le fournisseur "credentials" de NextAuth
+            const response = await signIn("credentials", {
+                redirect: false,
+                email: data.email,
+                password: data.password
+            })
 
-        // Si la connexion est réussie
-        if (response.success) {
-            // Redirection vers la page d'accueil
+            if (response?.error) {
+                console.error("Email ou mot de passe incorrect.", response.error)
+                return
+            }
+
+            // Redirection vers le tableau de bord
             router.push("/dashboard")
+
+        } catch (error) {
+            console.error("Error logging in with credentials", error)
+
+        } finally {
+            // Désactivation du loader
+            setLoading(false)
         }
     }
+
 
     const handleProviderLogin = async (provider: string) => {
         try {

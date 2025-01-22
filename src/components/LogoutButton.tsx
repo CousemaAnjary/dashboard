@@ -2,8 +2,8 @@
 
 // import { signOut } from "next-auth/react";
 import { Button } from "./ui/button"
-import { deleteSession } from "../lib/sessions";
-import { useRouter } from "next/navigation";
+import { deleteSession } from "../lib/sessions"
+import { useRouter } from "next/navigation"
 
 
 
