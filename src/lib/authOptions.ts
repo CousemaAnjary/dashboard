@@ -16,12 +16,7 @@ export const authOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
     ],
-    callbacks: {
-        async redirect({ url, baseUrl }) {
-            // Redirection personnalisée après la connexion
-            return url.startsWith(baseUrl) ? url : baseUrl;
-        },
-    },
+   
 
 
 
