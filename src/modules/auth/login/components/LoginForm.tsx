@@ -56,7 +56,6 @@ export default function LoginForm() {
         }
     }
 
-
     const handleProviderLogin = async (provider: string) => {
         try {
             // Affichage du loader pendant le chargement

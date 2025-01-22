@@ -49,9 +49,20 @@ export const authOptions: NextAuthOptions = {
         })
     ],
 
-    // callbacks: {
-        
-    // },
+    callbacks: {
+        async session({ session, token }) {
+            // Ajouter l'ID utilisateur à la session
+            session.user.id = token.id as string;
+            return session;
+        },
+
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id; // Ajouter l'ID utilisateur au token JWT
+            }
+            return token;
+        },
+    },
 
     adapter: PrismaAdapter(prisma)
 }
