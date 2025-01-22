@@ -4,7 +4,6 @@ import { cache } from 'react'
 import { prisma } from './prisma'
 import { decrypt } from './sessions'
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 
 // Vérifie si l'utilisateur est connecté en décryptant la session
 export const verifySession = cache(async () => {
@@ -14,14 +13,14 @@ export const verifySession = cache(async () => {
     const sessionToken = cookieStore.get('session')?.value
 
     if (!sessionToken) {
-        redirect('/auth/login') // Rediriger si aucun token de session n'est trouvé
+        return { isAuth: false, userId: null };
     }
 
     // Décrypter le token pour récupérer la session
     const session = await decrypt(sessionToken)
 
     if (!session?.userId) {
-        redirect('/auth/login') // Rediriger si la session est invalide ou expirée
+        return { isAuth: false, userId: null };
     }
 
     // Retourner les informations de la session
