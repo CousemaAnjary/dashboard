@@ -16,7 +16,7 @@ export default function LogoutButton() {
      * ! COMPORTEMENT (méthodes, fonctions) de l'application
      */
     const handleGithubLogout = async () => {
-        deleteSession()
+        await deleteSession();
         await signOut();
     };
 
