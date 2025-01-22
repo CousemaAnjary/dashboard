@@ -26,7 +26,7 @@ export async function decrypt(session: string) {
         algorithms: ['HS256'],
     })
     // Retourner le payload (contient les données de session)
-    return payload
+    return payload as SessionPayload
 }
 
 // Création de la session
