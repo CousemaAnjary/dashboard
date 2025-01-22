@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
-import { useRouter } from "next/navigation"
+// import { useRouter } from "next/navigation"
 // import { login } from "../../register/services"
 import { Input } from "@/src/components/ui/input"
 import { Eye, EyeOff, Loader } from "lucide-react"
@@ -21,7 +21,7 @@ export default function LoginForm() {
     /**
      * ! STATE (état, données) de l'application
      */
-    const router = useRouter()
+    // const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
@@ -40,20 +40,12 @@ export default function LoginForm() {
         setLoading(true)
 
         try {
-            // Connexion avec le fournisseur "credentials" de NextAuth
-            const response = await signIn("credentials", {
-                redirect: false,
+            await signIn("credentials", {
+                redirect: true, // Activer la redirection automatique
+                callbackUrl: "/dashboard", // URL après connexion
                 email: data.email,
-                password: data.password
+                password: data.password,
             })
-
-            if (response?.error) {
-                console.error("Email ou mot de passe incorrect.", response.error)
-                return
-            }
-
-            // Redirection vers le tableau de bord
-            router.push("/dashboard")
 
         } catch (error) {
             console.error("Error logging in with credentials", error)
