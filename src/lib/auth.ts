@@ -9,9 +9,6 @@ import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions: NextAuthOptions = {
 
-    // Adapter : pour la connexion à la base de données
-    adapter: PrismaAdapter(prisma),
-
     // Provider : pour les fournisseurs d'authentification ou les identifiants personnalisés
     providers: [
         GithubProvider({
@@ -62,5 +59,9 @@ export const authOptions: NextAuthOptions = {
     pages: {
         signIn: "/auth/login",
     },
+
+    // Adapter : pour la connexion à la base de données
+    adapter: PrismaAdapter(prisma),
+
 }
 
