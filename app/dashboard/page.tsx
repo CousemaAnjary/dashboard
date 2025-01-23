@@ -1,3 +1,4 @@
+import LogoutButton from "@/src/components/LogoutButton";
 
 export default async function Dashboard() {
     /**
@@ -16,6 +17,7 @@ export default async function Dashboard() {
     return (
         <>
             <h1>Dashboard</h1>
+            <LogoutButton />
         </>
     )
 }

@@ -5,25 +5,27 @@ import { loginSchema } from "./validations/auth"
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
-import Credentials from "next-auth/providers/credentials"
-
+import CredentialsProvider from "next-auth/providers/credentials"
 
 export const authOptions: NextAuthOptions = {
+
+    // Adapter : pour la connexion à la base de données
+    adapter: PrismaAdapter(prisma),
+
+    // Provider : pour les fournisseurs d'authentification ou les identifiants personnalisés
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_ID as string,
             clientSecret: process.env.GITHUB_SECRET as string,
         }),
         GoogleProvider({
-            clientId: process.env.GOOGLE_ID as string,
-            clientSecret: process.env.GOOGLE_SECRET as string,
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
 
         // Ajouter un fournisseur d'authentification personnalisé
-        Credentials({
-            name: "Credentials",
-
-            credentials: {}, // Plus besoin de spécifier les champs ici
+        CredentialsProvider({
+            credentials: { email: {}, password: {} },
 
             async authorize(credentials) {
                 // Valider les informations d'identification
@@ -50,25 +52,15 @@ export const authOptions: NextAuthOptions = {
             }
         })
     ],
-    adapter: PrismaAdapter(prisma),
 
-    callbacks: {
-        async jwt({ token, user }) {
-            // Ajouter des informations utilisateur au token JWT
-            if (user) {
-                token.id = user.id;
-                token.email = user.email;
-            }
-            return token;
-        },
+    // Session : pour la configuration de la session utilisateur
+    session: {
+        strategy: "jwt",
+    },
 
-        async session({ session, token }) {
-            // Ajouter l'ID utilisateur à la session
-            if (token) {
-                session.user.id = token.id as string;
-                session.user.email = token.email as string;
-            }
-            return session;
-        },
+    // Pages : pour la configuration des pages d'authentification
+    pages: {
+        signIn: "/auth/login",
     },
 }
+
