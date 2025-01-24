@@ -1,6 +1,8 @@
 // import LogoutButton from "@/src/components/LogoutButton";
 
-export default async function Dashboard() {
+import LogoutButton from "@/src/components/LogoutButton";
+
+export default function Dashboard() {
     /**
      * ! STATE (état, données) de l'application
      */
@@ -17,7 +19,7 @@ export default async function Dashboard() {
     return (
         <>
             <h1>Dashboard</h1>
-            {/* <LogoutButton /> */}
+            <LogoutButton />
         </>
     )
 }

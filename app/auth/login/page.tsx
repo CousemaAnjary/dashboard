@@ -9,7 +9,7 @@ import LoginForm from "@/src/modules/auth/login/components/LoginForm"
 
 
 
-export default async function Login() {
+export default  function Login() {
     /**
      * ! STATE (état, données) de l'application
      */

@@ -6,7 +6,7 @@ import RegisterForm from "@/src/modules/auth/register/components/RegisterForm"
 
 
 
-export default async function Register() {
+export default  function Register() {
     /**
      * ! STATE (état, données) de l'application
      */
@@ -43,3 +43,4 @@ export default async function Register() {
         </div>
     )
 }
+
